@@ -32,7 +32,9 @@ export default {
     ON_SITE: true, // whether-you-want-on-site-jobs-or-not(true/false)
     HYBRID: true, // whether-you-want-hybrid-jobs-or-not(true/false)
   },
+  DATE_POSTED: "PAST_WEEK", // possible values: "PAST_24_HOURS", "PAST_WEEK", "PAST_MONTH"
   JOB_TITLE: "a-regex-to-match-with-the-job-title",
+  JOB_TITLE_EXCLUDED: "a-regex-to-exclude-match-with-the-job-title",
   JOB_DESCRIPTION: "a-regex-to-match-with-the-job-description",
   MODE: "strict", // strict or normal, strict will ensure the job title and description should match
 
