@@ -11,8 +11,11 @@ export default {
     ON_SITE: true,
     HYBRID: false,
   },
+  DATE_POSTED: "PAST_WEEK", // possible values: "PAST_24_HOURS", "PAST_WEEK", "PAST_MONTH"
   JOB_TITLE:
     "(javascript|frontend|front-end|fullstack|full-stack|nodejs|node|js).*(developer|engineer)",
+  JOB_TITLE_EXCLUDED:
+    "(python|java|\\.net|c#|go|bi|test|sdet|tableau|android|devops|blockchain|cloud|rust|smart|compiler|data|contract|system|azure|kubernetes|ios|delphi|dotnet).*?(developer|engineer)",
   JOB_DESCRIPTION: "^((?!(primeit))(.|[\n\r]))*$",
   JOB_DESCRIPTION_LANGUAGES: ["portuguese", "english"], // replace value with ["any"] to accept all job description laguages
   MODE: "strict", // strict or normal, strict will ensure the job title and description should match
