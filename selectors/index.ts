@@ -3,7 +3,7 @@ export default {
     "div.jobs-apply-button--top-card button.jobs-apply-button:enabled",
 
   // Job search form
-  keywordInput: 'input[id*="jobs-search-box-keyword-id"]',
+  keywordInput: 'input[id^="jobs-search-box-keyword-id"]',
   locationInput: 'input[id*="jobs-search-box-location-id"]',
 
   // Easy apply form
@@ -40,12 +40,10 @@ export default {
   // fetch user
   searchResultList: ".jobs-search-results-list",
   searchResultListText: "small.jobs-search-results-list__text",
-  searchResultListItem:
-    ".jobs-search-results-list li.jobs-search-results__list-item",
-  searchResultListItemLink: "a.job-card-list__title",
-  searchResultListItemCompanyName:
-    "span.job-card-container__primary-description",
-  jobDescription: "div.jobs-description-content__text",
+  searchResultListItem: ".scaffold-layout__list-item",
+  searchResultListItemLink: "a.job-card-list__title--link",
+  searchResultListItemCompanyName: ".artdeco-entity-lockup__subtitle",
+  jobDescription: "div.jobs-description-content__text--stretch",
   appliedToJobFeedback: ".artdeco-inline-feedback",
 
   // fetch guest

@@ -5,7 +5,8 @@
   "main": "./scripts/apply.ts",
   "scripts": {
     "start": "ts-node ./scripts/apply.ts",
-    "apply": "nodemon ./scripts/apply.ts SUBMIT"
+    "apply": "ts-node ./scripts/apply.ts SUBMIT",
+    "dev": "nodemon ./scripts/apply.ts SUBMIT"
   },
   "author": "",
   "license": "ISC",

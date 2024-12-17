@@ -19,7 +19,9 @@ async function getJobSearchMetadata({
 }) {
   await page.goto("https://linkedin.com/jobs", { waitUntil: "load" });
 
+  await page.waitForSelector(selectors.keywordInput, { visible: true });
   await page.type(selectors.keywordInput, keywords);
+
   await page.waitForSelector(selectors.locationInput, { visible: true });
   await page.$eval(
     selectors.locationInput,
@@ -145,6 +147,7 @@ async function* fetchJobLinksUser({
           }`,
           (el) => {
             const linkEl = el as HTMLLinkElement;
+            console.log("linkEl", linkEl);
             linkEl.click();
 
             // Select the visible span for the title
