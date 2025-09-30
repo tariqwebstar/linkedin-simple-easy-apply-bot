@@ -17,7 +17,7 @@ async function getJobSearchMetadata({
   location: string;
   keywords: string;
 }) {
-  await page.goto("https://linkedin.com/jobs", { waitUntil: "load" });
+  await page.goto("https://linkedin.com/jobs/search", { waitUntil: "load" });
 
   await page.waitForSelector(selectors.keywordInput, { visible: true });
   await page.type(selectors.keywordInput, keywords);
@@ -121,6 +121,8 @@ async function* fetchJobLinksUser({
   const jobTitleExcludedRegExp = new RegExp(jobTitleExcluded, "i");
   const jobDescriptionRegExp = new RegExp(jobDescription, "i");
   const companies: string[] = [];
+
+  console.log(numSeenJobs, numAvailableJobs);
 
   while (numSeenJobs < numAvailableJobs) {
     //while (numSeenJobs < numAvailableJobs) {

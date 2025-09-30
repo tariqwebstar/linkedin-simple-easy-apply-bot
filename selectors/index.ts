@@ -3,8 +3,8 @@ export default {
     "div.jobs-apply-button--top-card button.jobs-apply-button:enabled",
 
   // Job search form
-  keywordInput: 'input[id^="jobs-search-box-keyword-id"]',
-  locationInput: 'input[id*="jobs-search-box-location-id"]',
+  keywordInput: 'input[aria-label*="Search by title, skill, or company"]',
+  locationInput: 'input[aria-label*="City, state, or zip code"]',
 
   // Easy apply form
   checkbox: ".jobs-easy-apply-modal input[type='checkbox']",
