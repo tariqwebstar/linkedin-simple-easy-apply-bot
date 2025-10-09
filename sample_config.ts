@@ -6,6 +6,7 @@ export default {
   // JOB SEARCH PARAMETERS
   KEYWORDS: "javascript",
   LOCATION: "Portugal",
+  LOCATION_EXCLUDED: "portugal, greece",
   WORKPLACE: {
     REMOTE: true,
     ON_SITE: true,

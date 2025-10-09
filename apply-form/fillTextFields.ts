@@ -36,10 +36,10 @@ async function fillTextFields(
 
     if (unansweredQuestions.length > 0) {
       // log unanswered questions to a file so use can update the textFields object in config
-      fs.appendFileSync(
-        "unansweredQuestions.txt",
-        unansweredQuestions.join("\n") + "\n"
-      );
+      // fs.appendFileSync(
+      //   "unansweredQuestions.txt",
+      //   unansweredQuestions.join("\n") + "\n"
+      // );
     }
   }
 }

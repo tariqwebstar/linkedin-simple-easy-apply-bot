@@ -80,3 +80,9 @@ To run the program without pressing the submit form button (for testing purposes
 ```
 npm run start
 ```
+
+const modal = document.querySelector('div[data-test-modal]');
+if (modal) {
+modal.style.top = '-300px';
+modal.style.top = '0px';
+}

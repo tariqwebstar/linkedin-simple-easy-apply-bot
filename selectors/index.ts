@@ -43,6 +43,7 @@ export default {
   searchResultListItem: ".scaffold-layout__list-item",
   searchResultListItemLink: "a.job-card-list__title--link",
   searchResultListItemCompanyName: ".artdeco-entity-lockup__subtitle",
+  searchResultListItemLocation: ".job-card-container__metadata-wrapper span",
   jobDescription: "div.jobs-description-content__text--stretch",
   appliedToJobFeedback: ".artdeco-inline-feedback",
 

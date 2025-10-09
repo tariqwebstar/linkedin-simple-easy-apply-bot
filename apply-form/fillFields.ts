@@ -19,7 +19,7 @@ async function fillFields(
 
   await insertPhone(page, formData.phone).catch(noop);
 
-  await uncheckFollowCompany(page);
+  //await uncheckFollowCompany(page);
   //await uploadDocs(page, formData.cvPath, formData.coverLetterPath).catch(noop);
 
   const textFields = {

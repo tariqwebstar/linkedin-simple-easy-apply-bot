@@ -63,6 +63,7 @@ const datesPosted: Record<date_posted, string> = {
 interface PARAMS {
   page: Page;
   location: string;
+  locationExcluded: string;
   keywords: string;
   workplace: { remote: boolean; onSite: boolean; hybrid: boolean };
   datePosted: date_posted | null;
@@ -79,6 +80,7 @@ interface PARAMS {
 async function* fetchJobLinksUser({
   page,
   location,
+  locationExcluded,
   keywords,
   workplace: { remote, onSite, hybrid },
   datePosted = null,
@@ -117,12 +119,15 @@ async function* fetchJobLinksUser({
 
   const url = buildUrl("https://www.linkedin.com/jobs/search", searchParams);
 
+  const locationExcludedSplit = locationExcluded
+    .split(",")
+    .map((loc) => loc.trim())
+    .join("|");
   const jobTitleRegExp = new RegExp(jobTitle, "i");
   const jobTitleExcludedRegExp = new RegExp(jobTitleExcluded, "i");
   const jobDescriptionRegExp = new RegExp(jobDescription, "i");
+  const locationExcludedRegExp = new RegExp(locationExcludedSplit, "i");
   const companies: string[] = [];
-
-  console.log(numSeenJobs, numAvailableJobs);
 
   while (numSeenJobs < numAvailableJobs) {
     //while (numSeenJobs < numAvailableJobs) {
@@ -162,6 +167,14 @@ async function* fetchJobLinksUser({
           }
         );
 
+        // Get location separately
+        const location = await page.$eval(
+          `${selectors.searchResultListItem}:nth-child(${i + 1}) ${
+            selectors.searchResultListItemLocation
+          }`,
+          (el) => el.textContent?.trim() || ""
+        );
+
         await page.waitForFunction(
           async (selectors) => {
             const hasLoadedDescription = !!document
@@ -199,15 +212,17 @@ async function* fetchJobLinksUser({
           jobDescriptionLanguages.includes("any") ||
           jobDescriptionLanguages.includes(jobDescriptionLanguage);
 
-        // console.log([
-        //   { canApply: canApply },
-        //   { jobTitleRegExp: jobTitleRegExp.test(title) },
-        //   { jobTitleExcludedRegExp: !jobTitleExcludedRegExp.test(title) },
-        //   { jobDescriptionRegExp: jobDescriptionRegExp.test(jobDescription) },
-        //   { matchesLanguage: matchesLanguage },
-        //   { companyName: companyName },
-        //   { title: title },
-        // ]);
+        console.log([
+          { canApply: canApply },
+          { jobTitleRegExp: jobTitleRegExp.test(title) },
+          { jobTitleExcludedRegExp: !jobTitleExcludedRegExp.test(title) },
+          { jobDescriptionRegExp: jobDescriptionRegExp.test(jobDescription) },
+          { matchesLanguage: matchesLanguage },
+          { companyName: companyName },
+          { title: title },
+          { location: location },
+          { locationExcludedRegExp: locationExcludedRegExp.test(location) },
+        ]);
 
         const isCompamyFound = companies.find((x) => x === companyName);
         if (!isCompamyFound) {
@@ -217,7 +232,8 @@ async function* fetchJobLinksUser({
               jobTitleRegExp.test(title) &&
               !jobTitleExcludedRegExp.test(title) &&
               jobDescriptionRegExp.test(jobDescription) &&
-              matchesLanguage
+              matchesLanguage &&
+              !locationExcludedRegExp.test(location)
             ) {
               numMatchingJobs++;
 
